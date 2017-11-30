@@ -18,7 +18,7 @@ public class Robot extends IterativeRobot {
 	static int PULLEY_MOTOR_ID;
 
 	// Id of each button on controller
-	static int STICK; // object of joystick port
+	static int STICK; // variable of joystick port
 	static int DRIVE_FORWARD;
 	static int DRIVE_TURN;
 	static int SHOOTER_BUTTON;
@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	Talon shooterMotor;
 	Talon pulleyMotor;
 
-	// object for each major class
+	// object for each subsystem class
 	Drive drive;
 	Pulley pulley;
 	Shooter shooter;
@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() { // runs once when robot is turned on
-		setConstants(); // set constants to assigned values
+		setConstants(); // set constants to assigned values of variables
 		
 		// instantiate declared objects
 		// instantiate motor controller objects, put ports as their parameters
@@ -66,22 +66,15 @@ public class Robot extends IterativeRobot {
 		robotDrive = new RobotDrive(frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor); // instantiate robotdrive, put motor controller objects as parameters  
 	}
 
-	/*
 	@Override
-	public void teleopInit() { // runs once when teleop starts
-		drive.sebastianDrive(); // call sebastianDrive in the drive class
-	}
-	*/
-	
-	@Override
-	public void teleopPeriodic() { // runs continuously during teleop
-		drive.sebastianDrive(); // call sebastianDrive in the drive class
-		shooter.shooter(); // call shooter in the shooter class
-		pulley.pulley(); // call pulley in the pulley class
+	public void teleopPeriodic() { // is called once every 20 milliseconds during teleop
+		drive.sebastianDrive(); // call method sebastianDrive on the drive class
+		shooter.shooter(); // call method shooter on the shooter class
+		pulley.pulley(); // call method pulley on the pulley class
 	}
 
 	public void displaySettings() { // put variables on the SmartDashboard
-		SmartDashboard.putNumber("shooter voltage", 0); // put a number shooter voltage and set its default to 0
+		SmartDashboard.putNumber("shooter voltage", 0); // put a number labeled shooter voltage and set its default to 0
 	}
 
 	public static void setConstants() { // assign values to the constant variables
